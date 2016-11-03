@@ -4,6 +4,6 @@ void main(){
   
   printf("Hello\n");
   printf("OSS\n");
-  printf("hi";
+  printf("hi");
   return;
 }
