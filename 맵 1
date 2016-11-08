@@ -1,0 +1,21 @@
+void GameStageSizeSet(const char *pnt)
+{
+    int max_x = 0;  
+    int x = 0;  
+    int y = 0;  
+    char data;
+    for (;;) {
+        data = *pnt++;
+        if (data == 0) break;   
+        if (data == 'n') {  
+            if (x > max_x)  max_x = x;
+            x = 0;
+            y++;
+            continue;
+        }
+        x++;
+    }
+    stage_x = (SIZE_MAP_X - max_x) / 2;
+    stage_y = (SIZE_MAP_Y - y) / 2;
+}
+ 
