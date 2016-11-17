@@ -1,30 +1,15 @@
 #include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<conio.h>
 
 #define MAXSTAGE 5
-#define putchxy(x,y,c),{gotoxy(x,y); putch(c);}
+
  
 
+int map() {
 
-
-
-
-void sokStage()
-{
-	int putchxy;
-	int stagex, stagey;
-	
-	for (stagey = 0; stagey < 10; stagey++)
-	{
-		for (stagex = 0; stagex < 34; stagex++)
-		{
-			putchxy(stagex,stagey,stage[stagey][stagex]);
-		}
-	}
-}
-    int Movecode;
-	int Movex,Movey;
-	
-	char arStag[MAXSTAGE][10][34]={
+  char arStage[MAXSTAGE][10][34]={
 		 {
 		  "#############",
 		  "########  ####",
@@ -85,10 +70,19 @@ void sokStage()
 		  "## #  #   #      o#######",
 		  "### ¤  ¤   #############",
 		  "## * # ¤    #############",
-		  "## #      ##############",
-		  "#########################"
 	      }	
 		};
 
-	return;
+  	
+  int i;
+	int x,y;
+	i = getch();
+	for(y=0;y<10;y++){
+		for(x=0;x<34;x++){
+			printf("%c",arStage[i][y][x]);
+		}
+		printf("\n");
+	}
+
+	return 0;
 }
