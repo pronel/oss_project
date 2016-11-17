@@ -1,1 +1,18 @@
-void ClearCheck(void){ char data; int loopx, loopy; for (loopy = 0; loopy < SIZE_MAP_Y; loopy++) {  for (loopx = 0; loopx < SIZE_MAP_X; loopx++) {   data=map[loopy][loopx] = 0;   if(data=='3')   {    return 0;//성공//           }   return 1; //실패시 1//  } }} 
+#include<stdio.h>
+#include<stdlib.h>
+
+bool checkclear()
+{
+ int mapx,mapy;
+ for (mapy=0;mapy<MSIZE;mapy++)
+ {
+  for (mapx=0;mapx<MSIZE;mapx++)
+  {
+   if (maps[stage][mapy][mapx]==3 && playmaps[mapy][mapx]!=2)
+   {
+    return false;
+   }
+  }
+ }
+ return true;
+}
