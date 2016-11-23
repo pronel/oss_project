@@ -1,65 +1,60 @@
-#include<stdio.h>
-#include<stdlib.h>  //system(x)를 사용하기 위해 선언
-#include"map.h"  // 맵 스테이지 갯수(Maxstage)를 셈하기 위해서 참조
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "map.h"
 
-
-typedef struct rank{
+typedef struct RANK {
 	int stage;
-	char name[4];
+	char name[5];
 	int move_count;
-	rank next*;
-}RANK;
+	struct RANK *next;
+}rank;
+void print_rank() {
+	int select;
+	printf("스테이지를 입력하세요. : \n");
+	scanf("%d", select);
 
-void print_rank(){
-	
 	FILE *f1;
-	rank *list;
-	rank *ranking = (rank*)malloc(sizeof(rank)); //랭킹을 읽어올 구조체를 동적할당
-
-	list = ranking;
-
-	int stage = 1;
-	f1 = fopen("rank.def","r");
-
-	printf("stage : %d\n",stage);    // map.h파일을 불러오면 while(stage <= Maxstage)를 사용하여 코드 크기를 줄여야함
-	printf("name\tmove count\n\n");
-	fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
-
-	while(!feof(f1)&&stage==1){
-		if(stage != ranking->stage){
-			stage++;
-			break;
-		}
-		printf("%s\t%d",ranking->stage,ranking->name,ranking->move_count);
-		ranking = ranking->next;
-		fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
+	rank *list, *ptr, *str;//기록을 찾는 노드
+	rank *compare, *temp, *node;//기록들을 비교하는 노드
+	list = (rank*)malloc(sizeof(rank));
+	compare = (rank*)malloc(sizeof(rank));
+	ptr = str = list;
+	temp = node = compare;
+	f1 = fopen("rank.txt", "r");
+	if (f1 == NULL)//파일의 유무를 확인
+	{
+		printf("error\n");
 	}
 
-	printf("stage : %d\n",stage);
-	printf("name\tmove count\n\n");
-	fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
+	printf("stage : %d\n", select);
+	printf("name\t move_count\n\n");
 
-	while(!feof(f1)&&stage==2){
-		if(stage != ranking->stage){
-			stage++;
-			break;
+	while (!feof(f1))
+	{
+		fscanf(f1, "%d %s %d", list->stage, list->name, list->move_count);
+	}
+	while (list != NULL)//원하는 데이터를 cmpare에 저장
+	{
+		ptr = str;
+		str = str->next;
+		if (select == str->stage)
+		{
+			compare->stage = str->stage;
+			strcpy(compare->name, str->name);
+			compare->move_count = str->move_count;
 		}
-		printf("%s\t%d",ranking->stage,ranking->name,ranking->move_count);
-		ranking = ranking->next;
-		fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
 	}
 
-	system("pause");
-	system("cls");
+	while (compare != NULL)
+	{
+		temp = node;
+		node = node->next;
 
-	free_rank(list);
-	fclose(f1);
-	return;
-}
-
-void free_rank(rank *list){
-	if(list->next != NULL){
-		free(list);
-		return;
+		if (temp->move_count > node->move_count)
+		{
+			temp = node->next;
+			node->next = temp;
+		}
 	}
 }
