@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<Windows.h>
+#include <string>
+
+#include <map>
+
+#include <cstdlib>
+
+#define col GetStdHandle(STD_OUTPUT_HANDLE) //
+
+#define RED SetConsoleTextAttribute( col,0x000c ); //빨간색
+
+#define BLUE SetConsoleTextAttribute( col,0x0001 | 0x0008); //파란색
+
+#define HIGH SetConsoleTextAttribute( col,0x00a); // 연두
+
+#define WHITE SetConsoleTextAttribute( col,0x000f); // 흰색
+
+#define SKY SetConsoleTextAttribute( col, 0x000b); //하늘색
+
+#define YEL SetConsoleTextAttribute( col, 0x000e); //노란색
+
+#define HIG SetConsoleTextAttribute( col, 0x000d); //형광
+
+#define VIO SetConsoleTextAttribute( col,0x0001 | 0x0008 |0x000c); //보라
+
+#define BCK SetConsoleTextAttribute( col,0x0000); // 검은색
+
+#define GRAY SetConsoleTextAttribute( col,0x0008); // 회색
+
+#define WHT SetConsoleTextAttribute( col,0x000F); // 하얀색
+
+#define RRD SetConsoleTextAttribute( col,0x0004); // 피색
+
+#define GREEN SetConsoleTextAttribute( col,0x0002); // 녹색
+using namespace std;
+
+
+int main()
+{
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	
+
+	YEL;printf("%40s \n","                                             ¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡  ¦¤\n");
+
+ 	YEL;printf("%21s \n","                                             ¦£           ¡á                                                                                    ¦¢\n");
+
+	YEL;printf("%23s \n","                                             ¦¢         ¡á ¡á            ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á         ¡á¡á    ¡á¡á        ¦¢\n");
+
+ 	YEL;printf("%2s \n","                                              ¦¢        ¡á   ¡á           ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á         ¡á¡á    ¡á¡á         ¦¢\n");
+
+ 	YEL;printf("%25s \n","                                             ¦¢       ¡á     ¡á                            ¡á¡á       ¡á¡á         ¡á¡á    ¡á¡á        ¦¢\n");
+
+ 	YEL;printf("%26s \n","                                             ¦¢      ¡á       ¡á         ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á¡á¡á¡á¡á¡á    ¡á¡á        ¦¢\n");
+
+ 	YEL;printf("%27s \n","                                             ¦¢     ¡á         ¡á        ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á         ¡á¡á    ¡á¡á¡á¡á  ¦¢\n");
+
+ 	YEL;printf("%28s \n","                                             ¦¢    ¡á            ¡á                        ¡á¡á       ¡á¡á         ¡á¡á    ¡á¡á¡á¡á  ¦¢\n");
+
+    YEL;printf("%29s \n","                                             ¦¢   ¡á     ¡á¡á   ¡á             ¡á¡á    ¡á¡á       ¡á¡á¡á¡á¡á¡á¡á    ¡á¡á        ¦¢\n");
+
+	YEL;printf("%30s \n","                                             ¦¢  ¡á      ¡á¡á     ¡á           ¡á¡á    ¡á¡á                                ¡á¡á        ¦¢\n");      
+
+	YEL;printf("%31s \n","                                             ¦¢           ¡á¡á                   ¡á¡á                 ¡á¡á                   ¡á¡á        ¦¢\n");
+	 
+	YEL;printf("%32s \n","                                             ¦¢           ¡á¡á                   ¡á¡á                 ¡á¡á                   ¡á¡á        ¦¢\n");
+
+	YEL;printf("%33s \n", "                                            ¦¢           ¡á¡á                   ¡á¡á                 ¡á¡á                                 ¦¢\n");
+
+	YEL;printf("%34s \n","                                             ¦¢           ¡á¡á                   ¡á¡á                 ¡á¡á                                 ¦¢\n");
+	 
+	YEL;printf("%35s \n","                                             ¦¢    ¡á¡á¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á¡á¡á         ¡á¡á¡á¡á¡á¡á¡á¡á               ¦¢\n");
+
+	YEL;printf("%36s \n","                                             ¦¢    ¡á¡á¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á¡á¡á         ¡á¡á¡á¡á¡á¡á¡á¡á               ¦¢\n");
+
+	YEL;printf("%37s \n","                                             ¦£                                                                                                  ¦¢\n");
+
+	YEL;printf("%38s \n","                                             ¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡  ¦¤\n");
+
+	printf("\n \n\n                                                                                                                                                제작진:김수로");
+	WHITE;printf("\n\n\n\n\n %115s \n","로딩중....................");
+	Sleep(9000);
+
+    WHITE;printf("\n\n\n\n%105s \n","완료");
+
+    Sleep(700);
+
+    system("cls"); 
+	return 0;
+}
