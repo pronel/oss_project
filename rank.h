@@ -1,65 +1,42 @@
 #include<stdio.h>
-#include<stdlib.h>  //system(x)를 사용하기 위해 선언
-#include"map.h"  // 맵 스테이지 갯수(Maxstage)를 셈하기 위해서 참조
-
-
-typedef struct rank{
+#include<stdlib.h>
+//노드 구조정의
+typedef struct ranking {
 	int stage;
-	char name[4];
+	char name[7];
 	int move_count;
-	rank next*;
-}RANK;
+	struct ranking *next;
+}rank;
 
-void print_rank(){
-	
+
+
+int main(void)
+{
 	FILE *f1;
-	rank *list;
-	rank *ranking = (rank*)malloc(sizeof(rank)); //랭킹을 읽어올 구조체를 동적할당
+	f1 = fopen("rank.txt", "r");
+	rank *list, *str, *head, *current, *fallow;
+	list = current = fallow = (rank*)malloc(sizeof(rank));
 
-	list = ranking;
+	while (!feof(f1)) { //파일안에 있는정보를 노드에 저장
+		fscanf(f1, "%d %s %d", &current->stage, current->name, &current->move_count);
 
-	int stage = 1;
-	f1 = fopen("rank.def","r");
+		head = (rank*)malloc(sizeof(rank));
 
-	printf("stage : %d\n",stage);    // map.h파일을 불러오면 while(stage <= Maxstage)를 사용하여 코드 크기를 줄여야함
-	printf("name\tmove count\n\n");
-	fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
+		fallow = current;
+		current->next = head;
+		current = current->next;
+	}
+	fallow->next = NULL;
 
-	while(!feof(f1)&&stage==1){
-		if(stage != ranking->stage){
-			stage++;
-			break;
-		}
-		printf("%s\t%d",ranking->stage,ranking->name,ranking->move_count);
-		ranking = ranking->next;
-		fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
+	str = list;
+	while (str != NULL) { //노드에 있는 정보출력 
+		printf("%d %s %d\n", str->stage, str->name, str->move_count);
+		str = str->next;
 	}
 
-	printf("stage : %d\n",stage);
-	printf("name\tmove count\n\n");
-	fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
-
-	while(!feof(f1)&&stage==2){
-		if(stage != ranking->stage){
-			stage++;
-			break;
-		}
-		printf("%s\t%d",ranking->stage,ranking->name,ranking->move_count);
-		ranking = ranking->next;
-		fscanf(f1,"%d %s %d",ranking->stage,ranking->name,&ranking->move_count);
-	}
-
-	system("pause");
-	system("cls");
-
-	free_rank(list);
 	fclose(f1);
-	return;
+	free(list);
+
+
 }
 
-void free_rank(rank *list){
-	if(list->next != NULL){
-		free(list);
-		return;
-	}
-}
