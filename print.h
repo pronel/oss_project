@@ -9,7 +9,7 @@ void print(stage *st,int move_count) {
 		}
 		printf("\n");
 	}
-	printf("�̵�Ƚ�� : %d", move_count);
+	printf(" : %d", move_count);
 }
 
 #endif
