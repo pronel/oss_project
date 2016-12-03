@@ -1,7 +1,7 @@
 #include"map.h"
-#ifndef PRINT_H 
+#ifndef PRINT_H
 #define PRINT_H
-void print(stage *st) {
+void print(stage *st,int move_count) {
 	int x,y;
 	for (y = 0; y < 10; y++) {
 		for (x = 0; x < 35; x++) {
@@ -9,6 +9,7 @@ void print(stage *st) {
 		}
 		printf("\n");
 	}
+	printf("�̵�Ƚ�� : %d", move_count);
 }
 
 #endif
