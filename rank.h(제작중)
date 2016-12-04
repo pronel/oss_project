@@ -1,26 +1,33 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-//노드 구조정의
-typedef struct ranking {
+#include ""
+typedef struct ranking {//원하는 스테이지 저장하는 구조체
 	int stage;
 	char name[7];
 	int move_count;
 	struct ranking *next;
 }rank;
+void insert sort();
+void rank_print();
+void node_free();
 
 
 
-int main(void)
+void insert sort(int stage, char name, int move_count)
 {
 	int select = 0;//스테이지를 입력받는 변수
+	int count = 0;
 	printf("원하는 스테이지를 입력하세요\n");
 	scanf("%d", &select);
 
 	FILE *f1;
 	f1 = fopen("rank.txt", "r");
-	rank *list,*head,*current,*fallow;
-	list =current= fallow= (rank*)malloc(sizeof(rank));
+	rank *list, *head, *current, *fallow;
+	list = current = fallow = (rank*)malloc(sizeof(rank));
+	rank *head2, *node, *ptr, *store;
+	node = ptr = store = (rank*)malloc(sizeof(rank));
+
 
 	while (!feof(f1)) { //파일안에 있는정보를 노드에 저장
 		fscanf(f1, "%d %s %d", &current->stage, current->name, &current->move_count);
@@ -31,49 +38,85 @@ int main(void)
 			fallow = current;
 			current->next = head;
 			current = current->next;
-		}		
+			count++;
+		}
+		else//그외 스테이지의 기록들 노드에 저장
+		{
+			head2 = (rank*)malloc(sizeof(rank));
+			store->stage = current->stage;
+			strcpy(store->name, current->name);
+			store->move_count = current->move_count;
+
+			ptr = store;
+			store->next = head2;
+			store = store->next;
+		}
 	}
-	printf("정보저장완료");
-	fallow->next = NULL;//쓰레기값출력 방지
-	fclose(f1);
-	free(current);
-	free(fallow);
+	ptr->next = NULL;//쓰레기값출력 방지
+	if (count == 1)
+		list->next = NULL;
+	else
+	{
+		fallow->next = NULL;//쓰레기값출력 방지
+		fclose(f1);
+	}
+	printf("정보저장완료\n");
 
 	rank *temp;
-	char name[7];
-	int move_count = 0;
-	temp = (rank*)malloc(sizeof(rank));
-	printf("정보를 입력하시오\n");
-	scanf("%s",name);
-	scanf("%d", &move_count);
-	temp->stage = select;
+	temp = (rank*)malloc(sizeof(rank));//게임이 끝난 기록을 받는 노드
+
+	temp->stage = stage;
 	strcpy(temp->name, name);
 	temp->move_count = move_count;
 	temp->next = NULL;
 
-	current = list;
-	while (current != 0 && current->move_count < move_count)//노드탐색
+
+	fallow = current = list;
+	while (current != 0 && current->move_count < temp->move_count)//노드탐색
 	{
 		fallow = current;
 		current = current->next;
 	}
-	temp->next = current;//삽입
+	temp->next = fallow->next;//삽입
 	if (current == list)//삽입위치가 맨처음일때
 		list = temp;
 	else
 		fallow->next = temp;
 
-
-	rank *str;//출력용 포인터 생성
-	str = list;
-
-	while (str != NULL) { //노드에 있는 정보출력 
-		printf("%d %s %d\n", str->stage, str->name, str->move_count);
-		str = str->next;
-		
-	}
-
-	fclose(f1);
-	free(list);
 }
 
+void rank_print()
+{
+	rank *str;//출력용 포인터 생성
+	str = list;
+	fopen("rank.txt", "w");
+	while (str != NULL) { //정렬된 정보 출력, 파일에 입력
+		printf("%d %s %d\n", str->stage, str->name, str->move_count);
+		fprintf(f1, "%d %s %d ", str->stage, str->name, str->move_count);
+		str = str->next;
+
+	}
+	fprintf(f1, "\n");
+	fclose(f1);
+
+	rank *wirte, *back;
+	back = wirte = node;
+	fopen("rank.txt", "a");
+	while (wirte != NULL)//그외의 기록들 txt파일에 삽입
+	{
+		fprintf(f1, "%d %s %d ", wirte->stage, wirte->name, wirte->move_count);
+		back = wirte;
+		wirte = wirte->next;
+	}
+	fclose(f1);	
+	node_free(list);
+	node_free(node);
+}
+
+void node_free(rank *head) {//동적해제하는 함수
+	NODE *del, lift;
+	for (del = head; del != NULL; del = lift) {
+		lift = del->next;
+		free(del);
+	}
+}
