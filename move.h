@@ -5,7 +5,7 @@
 	#endif
 #pragma warning(disable : 4996)
 #endif
-#ifndef MOVE_H // ��������� �ߺ� ������ �������� ���.(������)
+#ifndef MOVE_H 
 #define MOVE_H
 
 #include<stdio.h>
