@@ -7,15 +7,31 @@ void print(stage *st,int move_count) {
 	int x,y;
 	printf("───────────────────────────\n");
 	for (y = 0; y < 10; y++) {
-		for (x = 0; x < 35; x++) {
-			if (st->map[y][x] == '#') {
-				printf	printf("★");
-			}else if (st->map[y][x] == 'X') {
-				printf("◎");
-			}else if (st->map[y][x] == 'o') {
-				printf("●");
-			}
-		}
+		  for (x = 0; x < 35; x++) {
+			  if (st->map[y][x] == '#') 
+			  {
+				  printf("■");
+			  } 
+			  else if (st->map[y][x] == ' ')
+			  {
+				  printf("  ");
+			  }
+			  else if (st->map[y][x] == '$')
+			  {  
+				  printf("○");
+			  } 
+			  else if (st->map[y][x] == '*')
+			  {  
+				  printf("★");  
+			  }
+			  else if (st->map[y][x] == 'X')
+			  { 
+				  printf("◎");
+			  }
+			  else if (st->map[y][x] == 'o') 
+			  {  
+				  printf("●"); 
+			  }		
 		printf("\n");
 	}
 	printf("───────────────────────────\n");
