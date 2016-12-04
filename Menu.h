@@ -1,15 +1,38 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include"move.h"
 
-int map(){
+#define left 75
+#define right 77
+#define enter 13
+
+int main() {
 	int choose;
-	while(1){
-		printf("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
-		printf("¦¢          ¡á¡á           ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á        ¡á¡á    ¡á¡á  ¦¢\n");
-		printf("¦¢         ¡á  ¡á          ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á        ¡á¡á    ¡á¡á  ¦¢\n");
-		printf("¦¢        ¡á    ¡á                     ¡á¡á       ¡á¡á¡á¡á¡á¡á¡á¡á    ¡á¡á  ¦¢\n");
-		printf("¦¢       ¡á      ¡á        ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á        ¡á¡á    ¡á¡á¡á¦¢\n");
-		printf("¦¢      ¡á        ¡á       ¡á¡á¡á¡á¡á¡á¡á¡á       ¡á¡á        ¡á¡á    ¡á¡á¡á¦¢\n");
-		printf("¦¢     ¡á   ¡á¡á   ¡á                  ¡á¡á       ¡á¡á¡á¡á¡á¡á¡á¡á    ¡á¡á  ¦¢\n");
-	
+	char name[7];
+	int stage;
+	int point=0;
+	while (1) {
+
+		
+		if (point == 0) {
+			printf("â˜žì‹œìž‘\t\tÂ  ì¢…ë£Œ\n");
+		}
+		if (point == 1) {
+			printf("Â  ì‹œìž‘\t\tâ˜žì¢…ë£Œ\n");
+		}
+		choose = getch();
+		if (choose == left)
+			point = 0;
+		if (choose == right)
+			point = 1;
+		if (choose == enter && point == 0) {
+			system("cls");
+			printf("stage(1~5) : ");
+			scanf("%d", &stage);
+			move(stage - 1);
+		}
+		else if(choose == enter && point == 1){
+			exit(1);
+		}
+		system("cls");
+	}
+	return 0;
 }
