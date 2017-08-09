@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<conio.h>
+#include"map.h"
+#include"print.h"
+
+#define left 75
+#define right 77
+#define up 72
+#define down 80
+stage *st;
+
+void move(int sta) {
+	int x, y;
+	int p_x = 2, p_y = 2;
+	int point;
+	while (1) {
+		print(sta, st);
+		for (y = 0; y < 10;	y++) {
+			for (x = 0; x < 34; x++) {
+				if (st->map[y][x] == '*') {
+					p_x = x;
+					p_y = y;
+				}
+			}
+		}
+		point = getch();
+		switch (point) {
+			case left:
+			if (p_x == 1) {
+				break;
+			}
+			st->map[p_y][p_x] = ' ';
+			p_x -= 1;
+			st->map[p_y][p_x] = '*';
+			break;
+			
+			case right:
+			if (p_x == 34) {
+				break;
+			}
+			st->map[p_y][p_x] = ' ';
+			p_x += 1;
+			st->map[p_y][p_x] = '*';
+			break;
+			
+			case up:
+			if (p_y == 1) {
+				break;
+			}
+			st->map[p_y][p_x] = ' ';
+			p_y -= 1;
+			st->map[p_y][p_x] = '*';
+			break;
+
+			case down:
+			if (p_y == 10) {
+				break;
+			}
+			st->map[p_y][p_x] = ' ';
+			p_y += 1;
+			st->map[p_y][p_x] = '*';
+			break;
+		}
+		system("cls");
+	}
+}
